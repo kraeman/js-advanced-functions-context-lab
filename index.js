@@ -21,44 +21,42 @@ const createEmployeeRecords = (arrayOfArrays) => {
 }
 
 const createTimeInEvent = function(dateStamp) {
-    const arrayOfTime = dateStamp.split("")
-    const date = arrayOfTime.slice(0, 10)
-    const m = date.join("")
-    const thing = arrayOfTime.slice(11, 15)
-    const thingy = parseInt(thing.join(""), 10)
-    debugger
+    const arrayOfTime = dateStamp.split(" ")
+    console.log('arrayOfTime', arrayOfTime)
+    const date = arrayOfTime[0]
+    const thing = arrayOfTime[1]
+    const thingy = parseInt(thing, 10)
+    // debugger
     // console.log(thingy)
-    const timeInObject = {type: "TimeIn", hour: thingy, date: m}
+    const timeInObject = {type: "TimeIn", hour: thingy, date: date}
     this.timeInEvents.push(timeInObject)
     return this
 }
 
-const createTimeOutEvent = (dateStamp) => {
+const createTimeOutEvent = function(dateStamp) {
     debugger
-    const arrayOfTime = dateStamp.split("")
-    console.log(arrayOfTime)
-    const date = arrayOfTime.slice(0, 10)
-    const m = date.join("")
-    const thing = arrayOfTime.slice(11, 15)
-    const thingy = parseInt(thing.join(""), 10)
-    console.log(thingy)
-    console.log(m)
-    const timeOutObject = {type: "TimeOut", hour: thingy, date: m}
+    const arrayOfTime = dateStamp.split(" ")
+    const date = arrayOfTime[0]
+    const thing = arrayOfTime[1]
+    const thingy = parseInt(thing, 10)
+   
+    const timeOutObject = {type: "TimeOut", hour: thingy, date: date}
     this.timeOutEvents.push(timeOutObject)
     return this
 }
 
 
-const hoursWorkedOnDate = (dateStamp) => {
+const hoursWorkedOnDate = function(dateStamp) {
     const toe = this.timeOutEvents
     const tie = this.timeInEvents
     const o = toe.find(e => e.date == dateStamp)
     const i = tie.find(e => e.date == dateStamp)
+    // console.(tie[0].date)
     const hw = o.hour - i.hour
     return hw / 100
 }
-const wagesEarnedOnDate = (date) => {
-    const hours = hoursWorkedOnDate(this, date)
+const wagesEarnedOnDate = function(date) {
+    const hours = hoursWorkedOnDate.call(this, date)
     const money = hours * this.payPerHour
     return money
 }
@@ -66,8 +64,9 @@ const wagesEarnedOnDate = (date) => {
 
 
 const calculatePayroll = (arrayOfEmployees) => {
+    console.log(arrayOfEmployees)
     let payroll = 0
-    arrayOfEmployees.forEach(e => payroll += allWagesFor(e))
+    arrayOfEmployees.forEach(e => payroll += allWagesFor.call(e))
     return payroll
 }
 
