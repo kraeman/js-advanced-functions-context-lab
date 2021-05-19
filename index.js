@@ -20,7 +20,7 @@ const createEmployeeRecords = (arrayOfArrays) => {
     return arrayOfObjects
 }
 
-const createTimeInEvent = (dateStamp) => {
+const createTimeInEvent = function(dateStamp) {
     const arrayOfTime = dateStamp.split("")
     const date = arrayOfTime.slice(0, 10)
     const m = date.join("")
