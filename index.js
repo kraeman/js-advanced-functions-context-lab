@@ -26,6 +26,7 @@ const createTimeInEvent = (dateStamp) => {
     const m = date.join("")
     const thing = arrayOfTime.slice(11, 15)
     const thingy = parseInt(thing.join(""), 10)
+    debugger
     // console.log(thingy)
     const timeInObject = {type: "TimeIn", hour: thingy, date: m}
     this.timeInEvents.push(timeInObject)
@@ -33,12 +34,15 @@ const createTimeInEvent = (dateStamp) => {
 }
 
 const createTimeOutEvent = (dateStamp) => {
+    debugger
     const arrayOfTime = dateStamp.split("")
+    console.log(arrayOfTime)
     const date = arrayOfTime.slice(0, 10)
     const m = date.join("")
     const thing = arrayOfTime.slice(11, 15)
     const thingy = parseInt(thing.join(""), 10)
-    // console.log(thingy)
+    console.log(thingy)
+    console.log(m)
     const timeOutObject = {type: "TimeOut", hour: thingy, date: m}
     this.timeOutEvents.push(timeOutObject)
     return this
